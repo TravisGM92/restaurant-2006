@@ -21,4 +21,7 @@ class Restaurant
     return closed.to_s + ':00'
   end
 
+  def add_dish(name)
+    @dishes << name
+  end
 end
