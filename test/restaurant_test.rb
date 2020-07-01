@@ -55,6 +55,29 @@ class RestaurantTest < Minitest::Test
   def test_if_its_open_for_lunch
 
     restaurant = Restaurant.new('10:00', 'Johnny Jims')
+    restaurant2 = Restaurant.new('1:00', 'Sammy Sams')
     assert_equal restaurant.open_for_lunch?, true
+    assert_equal restaurant2.open_for_lunch?, false
+
   end
+
+  def test_if_it_has_an_exciting_menu
+
+    restaurant2 = Restaurant.new('1:00', 'Sammy Sams')
+    restaurant2.add_dish('Burrata')
+    restaurant2.add_dish('Pizzetta')
+    restaurant2.add_dish('Ravioli')
+
+    assert_equal ["BURRATA", "PIZZETTA", "RAVIOLI"], restaurant2.menu_dish_names
+  end
+
+  def test_it_can_announce_closing_time
+    restaurant = Restaurant.new("10:00", "Johnny Jims")
+    restaurant3 = Restaurant.new("6:00", "Sammy Sams")
+
+
+    assert_equal "Johnny Jims will be closing at 1:00PM", restaurant.announce_closing(3)
+    assert_equal "Sammy Sams will be closing at 8:00AM", restaurant3.announce_closing(2)
+  end
+
 end

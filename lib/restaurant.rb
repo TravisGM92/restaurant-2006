@@ -24,4 +24,25 @@ class Restaurant
   def add_dish(name)
     @dishes << name
   end
+
+  def open_for_lunch?
+    @opening.to_i < 12 && @opening.to_i > 6 ? true : false
+  end
+
+  def menu_dish_names
+    @dishes.collect{ |food| food.upcase}
+  end
+
+  def announce_closing(x)
+    closing = @opening.to_i + x
+    if closing > 12
+      real_time = (closing - 12).to_s + ":00PM"
+      return "#{@name} will be closing at #{real_time}"
+    else
+      real_time2 = closing.to_s + ":00AM"
+      return "#{@name} will be closing at #{real_time2}"
+    end
+  end
+
+
 end
